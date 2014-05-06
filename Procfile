@@ -1,1 +1,1 @@
-web: scripts/build_nginx.sh PORT=/tmp/nginx.socket node server.js
+web: scripts/build_nginx.sh PORT_WWW=/tmp/nginx.socket node server.js

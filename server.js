@@ -39,8 +39,10 @@ var server = http.createServer(function(req,res) {
   res.end('Hi\n');
 });
 
-server.listen(listenport, listenhost);
-console.info("ok, " + config.host + ":" + config.port + " listening on " + listenhost + ":" + listenport); 
+//server.listen(listenport, listenhost);
+//console.info("ok, " + config.host + ":" + config.port + " listening on " + listenhost + ":" + listenport); 
+server.listen(listenport);
+//console.info("ok, " + config.host + ":" + config.port + " listening on " + listenport); 
 console.info(JSON.stringify(process.env));
 
 fs.open('/tmp/app-initialized', 'w', function(err,fd) { fs.close(fd); });
