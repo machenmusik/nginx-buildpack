@@ -43,6 +43,7 @@ server.listen(listenport, listenhost);
 console.info("ok, " + config.host + ":" + config.port + " listening on " + listenhost + ":" + listenport); 
 console.info(JSON.stringify(process.env));
 
+fs.open('/tmp/app-initialized', 'w', function(err,fd) { fs.close(fd); });
 
 // this code is to keep the app from hibernating e.g. when running on Heroku
     
