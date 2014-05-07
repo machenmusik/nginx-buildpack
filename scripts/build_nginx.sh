@@ -20,6 +20,8 @@ pcre_tarball_url=http://garr.dl.sourceforge.net/project/pcre/pcre/${PCRE_VERSION
 headers_more_nginx_module_url=https://github.com/agentzh/headers-more-nginx-module/archive/v${HEADERS_MORE_VERSION}.tar.gz
 pushstream_tarball_url=https://github.com/wandenberg/nginx-push-stream-module/archive/${PUSHSTREAM_VERSION}.tar.gz
 
+nginx_leak_patch_url=https://gist.githubusercontent.com/wandenberg/6096183/raw/ngx_slab_to_unfrag_memory.patch
+
 temp_dir=$(mktemp -d /tmp/nginx.XXXXXXXXXX)
 
 echo "Serving files from /tmp on $PORT"
@@ -31,6 +33,9 @@ echo "Temp dir: $temp_dir"
 
 echo "Downloading $nginx_tarball_url"
 curl -L $nginx_tarball_url | tar xzv
+
+echo "Downloading and applying $nginx_leak_patch_url"
+(cd nginx-${NGINX_VERSION} && curl -L $nginx_leak_patch_url | patch -p0 )
 
 echo "Downloading $pushstream_tarball_url"
 (cd nginx-${NGINX_VERSION} && curl -L $pushstream_tarball_url | tar xvz )
